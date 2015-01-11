@@ -6,7 +6,8 @@ module API
       resource :media do
         desc 'Return all media'
         get '', root: :media do
-          Media.all
+          media = Media.all
+          present media, with: Media::V1::Entity
         end
 
         desc 'Return a media'

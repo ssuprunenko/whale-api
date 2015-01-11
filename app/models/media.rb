@@ -17,4 +17,16 @@ class Media < ActiveRecord::Base
             in: [:image, :video],
             default: :image,
             predicates: true
+
+  module V1
+    class Entity < Grape::Entity
+      expose :type do |media|
+        media.media_type
+      end
+      expose :caption
+      expose :link
+      expose :created_time
+      expose :id
+    end
+  end
 end

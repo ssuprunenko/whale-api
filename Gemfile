@@ -5,14 +5,13 @@ gem 'rails-api'
 
 # JSON API
 gem 'grape'
-gem 'grape-active_model_serializers'
+gem 'grape-entity'
 gem 'grape-swagger'
 gem 'grape-swagger-rails'
 
 gem 'rack-cors', require: 'rack/cors'
 
 gem 'pg'
-gem 'active_model_serializers'
 gem 'enumerize'
 
 group :development do
