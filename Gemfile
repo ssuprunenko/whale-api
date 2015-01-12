@@ -14,6 +14,10 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'pg'
 gem 'enumerize'
 
+gem 'instagram'
+
+gem 'dotenv-deployment'
+
 group :development do
   gem 'spring'
 
