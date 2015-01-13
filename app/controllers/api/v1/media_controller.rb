@@ -13,7 +13,8 @@ module API
           optional :distance, type: Integer, desc: 'Distance', default: 1000
         end
         get '', root: :media do
-          media = Media.media_search(permitted_params)
+          lat, lng = params[:lat], params[:lng]
+          media = Media.media_search(lat, lng, permitted_params.except(:lat, :lng))
 
           present media, with: Media::V1::Entity
         end

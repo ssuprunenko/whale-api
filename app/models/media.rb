@@ -11,21 +11,11 @@
 #  updated_at   :datetime
 #
 class Media < ActiveRecord::Base
-  extend Enumerize
-
-  enumerize :media_type,
-            in: [:image, :video],
-            default: :image,
-            predicates: true
-
-  def self.media_search(options={})
-    lat = options[:lat]
-    lng = options[:lng]
-    limit = options[:limit]
-    distance = options[:distance]
+  def self.media_search(lat, lng, opts={limit: 10, distance: 1000})
+    opts.each { |k,v| instance_variable_set("@#{k}", v) }
 
     client = Instagram.client
-    items = client.media_search(lat, lng, count: limit, distance: distance)
+    items = client.media_search(lat, lng, count: @limit, distance: @distance)
   end
 
 
