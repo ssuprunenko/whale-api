@@ -4,9 +4,18 @@ module API
       include API::V1::Defaults
 
       resource :media do
-        desc 'Return all media'
+        desc 'Search for media in a given area'
+        params do
+          # TODO: Replace optional to requires for coords
+          optional :lat, type: Float, desc: 'Latitude', default: 59.842373
+          optional :lng, type: Float, desc: 'Longitude', default: 30.210820
+          optional :limit, type: Integer, desc: 'Limit', default: 10
+          optional :distance, type: Integer, desc: 'Distance', default: 1000
+        end
         get '', root: :media do
-          media = Media.all
+          lat, lng = params[:lat], params[:lng]
+          media = Media.media_search(lat, lng, permitted_params.except(:lat, :lng))
+
           present media, with: Media::V1::Entity
         end
 
