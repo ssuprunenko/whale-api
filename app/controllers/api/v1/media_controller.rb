@@ -16,7 +16,7 @@ module API
           lat, lng = params[:lat], params[:lng]
           media = Media.media_search(lat, lng, permitted_params.except(:lat, :lng))
 
-          present media, with: Media::V1::Entity
+          present media, with: API::V1::Entities::MediaEntity
         end
 
         desc 'Return a media'
