@@ -33,10 +33,10 @@ module API::V1::Entities
       expose :username do |media|
         media.user.username
       end
-      expose :full_name do |media|
+      expose :name do |media|
         media.user.full_name
       end
-      expose :id do |media|
+      expose :uid do |media|
         media.user.id
       end
     end
