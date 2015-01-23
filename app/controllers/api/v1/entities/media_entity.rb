@@ -39,6 +39,9 @@ module API::V1::Entities
       expose :uid do |media|
         media.user.id
       end
+      expose :profile_picture do |media|
+        media.user.profile_picture
+      end
     end
   end
 end

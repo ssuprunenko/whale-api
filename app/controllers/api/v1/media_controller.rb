@@ -9,10 +9,10 @@ module API
           # TODO: Replace optional to requires for coords
           optional :lat, type: Float, desc: 'Latitude', default: ENV['DEFAULT_LAT']
           optional :lng, type: Float, desc: 'Longitude', default: ENV['DEFAULT_LNG']
-          optional :limit, type: Integer, desc: 'Limit', default: 10
+          optional :count, type: Integer, desc: 'Count', default: 10
           optional :distance, type: Integer, desc: 'Distance', default: 1000
         end
-        get '', root: :media do
+        get do
           lat, lng = params[:lat], params[:lng]
           media = Media.media_search(lat, lng, permitted_params.except(:lat, :lng))
 

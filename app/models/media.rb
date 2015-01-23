@@ -11,11 +11,10 @@
 #  updated_at   :datetime
 #
 class Media < ActiveRecord::Base
-  def self.media_search(lat, lng, opts={limit: 10, distance: 1000})
+  def self.media_search(lat, lng, opts={count: 10, distance: 1000})
     opts.each { |k,v| instance_variable_set("@#{k}", v) }
 
     client = Instagram.client(access_token: ENV['INSTAGRAM_ACCESS_TOKEN'])
-    items = client.media_search(lat, lng, distance: @distance)
-    items.first(@limit)
+    items = client.media_search(lat, lng, count: @count, distance: @distance)
   end
 end
