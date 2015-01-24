@@ -7,7 +7,10 @@ module API
       mount API::V1::UsersController
 
       add_swagger_documentation(
-        hide_format: true
+        mount_path: '/v1/swagger_doc',
+        api_version: 'v1',
+        hide_documentation_path: true,
+        hide_format: false
       )
     end
   end

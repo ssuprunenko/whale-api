@@ -7,7 +7,7 @@ gem 'rails-api'
 gem 'grape'
 gem 'grape-entity'
 gem 'grape-swagger'
-gem 'grape-swagger-rails'
+gem 'grape-swagger-rails', github: 'BrandyMint/grape-swagger-rails'
 
 gem 'rack-cors', require: 'rack/cors'
 
