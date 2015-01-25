@@ -10,9 +10,7 @@ module API
           present users, with: API::V1::Entities::UserEntity
         end
 
-        desc 'Create the user' do
-          success API::V1::Entities::UserEntity
-        end
+        desc 'Create the user'
         params do
           requires :uid, type: Integer, desc: 'Instagram ID of the user'
           optional :name, type: String, desc: 'Full Name'
@@ -26,7 +24,7 @@ module API
           if @user.save
             present @user, with: API::V1::Entities::UserEntity
           elsif @user.invalid?
-            error!({error: @user.errors.full_messages.to_sentence}, 422)
+            error!({error: @user.errors.messages}, 422)
           else
             error!('Unexpected Error', 500)
           end

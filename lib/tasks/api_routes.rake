@@ -20,7 +20,7 @@ task api_routes: :environment do
     info = route.instance_variable_get :@options
     description = EMW + "#{info[:description][0..39]}".rjust(40) + NOCOLOR
     method = EMC + "#{info[:method]}".center(6) + NOCOLOR
-    path = EMR + "#{info[:path]}".ljust(30) + NOCOLOR
+    path = EMR + "#{info[:path]}".ljust(32) + NOCOLOR
     params = EMB + "#{info[:settings][:declared_params].to_s}" + NOCOLOR
 
     puts "#{description}  | #{method} |  #{path}  |  #{params}"
