@@ -18,8 +18,9 @@ module API
           end
         end
 
-        rescue_from ActiveRecord::RecordNotFound do
-          Rack::Response.new(['Not found'], 404, env['api.endpoint'].header).finish
+        # global exception handler, used for error notifications
+        rescue_from ActiveRecord::RecordNotFound do |e|
+          error_response(message: e.message, status: 404)
         end
       end
     end
