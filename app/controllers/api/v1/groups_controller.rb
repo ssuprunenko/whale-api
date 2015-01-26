@@ -7,6 +7,7 @@ module API
         desc 'Return all groups'
         get do
           groups = Group.all
+          present groups, with: API::V1::Entities::GroupEntity
         end
 
         desc 'Create a group'
@@ -16,7 +17,7 @@ module API
         post do
           @group = Group.new(permitted_params)
           if @group.save
-            @group
+            present @group, with: API::V1::Entities::GroupEntity
           elsif @group.invalid?
             error!({error: @group.errors.messages}, 422)
           else
@@ -34,7 +35,7 @@ module API
           requires :id, type: Integer
         end
         get ':id' do
-          @group
+          present @group, with: API::V1::Entities::GroupEntity
         end
 
         desc 'Update a group'
@@ -44,7 +45,7 @@ module API
         end
         put ':id' do
           if @group.update(permitted_params)
-            @group
+            present @group, with: API::V1::Entities::GroupEntity
           else
             error!({error: @group.errors.full_messages.to_sentence}, 422)
           end

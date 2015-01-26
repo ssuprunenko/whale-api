@@ -1,5 +1,7 @@
 module API::V1::Entities
   class MediaEntity < Grape::Entity
+    root 'media', 'media'
+
     expose :tags
 
     expose :location do
