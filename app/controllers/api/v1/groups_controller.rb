@@ -4,6 +4,10 @@ module API
       include API::V1::Defaults
 
       resource :groups do
+        before do
+          authenticate!
+        end
+
         desc 'Return all groups'
         get do
           groups = Group.all
