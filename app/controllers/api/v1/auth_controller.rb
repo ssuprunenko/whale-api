@@ -11,6 +11,7 @@ module API
         end
         post do
           account = Account.new(permitted_params)
+
           if account.save
             account
           elsif account.invalid?

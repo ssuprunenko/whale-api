@@ -10,7 +10,7 @@ module API
 
         desc 'Return all groups'
         get do
-          groups = Group.all
+          groups = current_account.groups
           present groups, with: API::V1::Entities::GroupEntity
         end
 
@@ -19,7 +19,7 @@ module API
           requires :name, type: String, desc: 'Name of Group'
         end
         post do
-          @group = Group.new(permitted_params)
+          @group = current_account.groups.new(permitted_params)
           if @group.save
             present @group, with: API::V1::Entities::GroupEntity
           elsif @group.invalid?
@@ -30,7 +30,7 @@ module API
         end
 
         before do
-          @group = Group.find(params[:id])
+          @group = current_account.groups.find(params[:id])
           raise(ActiveRecord::RecordNotFound) unless @group
         end
 

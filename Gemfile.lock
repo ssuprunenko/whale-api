@@ -83,6 +83,8 @@ GEM
       dotenv (~> 1.0)
     equalizer (0.0.9)
     erubis (2.7.0)
+    faker (1.4.3)
+      i18n (~> 0.5)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.9.1)
@@ -221,6 +223,7 @@ DEPENDENCIES
   bullet
   devise
   dotenv-deployment
+  faker
   grape
   grape-entity
   grape-swagger

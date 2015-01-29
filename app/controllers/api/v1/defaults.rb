@@ -31,7 +31,7 @@ module API
           end
 
           def current_account
-            warden.account || @account
+            @account
           end
         end
 

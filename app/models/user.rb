@@ -13,6 +13,8 @@
 #  updated_at      :datetime         not null
 #
 class User < ActiveRecord::Base
+  has_and_belongs_to_many :groups
+
   validates :uid, presence: true, uniqueness: true
   validates :username, presence: true, uniqueness: true
 end

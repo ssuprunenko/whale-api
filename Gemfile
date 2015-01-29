@@ -33,5 +33,6 @@ group :development do
   gem 'bullet'
 
   gem 'annotate'
+  gem 'faker'
 end
 

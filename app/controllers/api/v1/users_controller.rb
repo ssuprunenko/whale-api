@@ -4,9 +4,13 @@ module API
       include API::V1::Defaults
 
       resource :users do
+        before do
+          authenticate!
+        end
+
         desc 'Return all users'
         get do
-          users = User.all
+          users = current_account.users
           present users, with: API::V1::Entities::UserEntity
         end
 
@@ -31,7 +35,7 @@ module API
         end
 
         before do
-          @user = User.find_by(uid: params[:uid])
+          @user = current_account.users.find_by(uid: params[:uid])
           raise(ActiveRecord::RecordNotFound) unless @user
         end
 
