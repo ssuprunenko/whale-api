@@ -26,7 +26,7 @@ module API
           requires :email, type: String
           requires :password, type: String
         end
-        post :login do
+        get :login do
           account = Account.find_by(email: params[:email].downcase)
 
           if account && account.valid_password?(params[:password])

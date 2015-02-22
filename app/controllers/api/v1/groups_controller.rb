@@ -9,6 +9,9 @@ module API
         end
 
         desc 'Return all groups'
+        params do
+          requires :access_token, type: String
+        end
         get do
           groups = current_account.groups
           present groups, with: API::V1::Entities::GroupEntity
@@ -37,6 +40,7 @@ module API
         desc 'Return a group'
         params do
           requires :id, type: Integer
+          requires :access_token, type: String
         end
         get ':id' do
           present @group, with: API::V1::Entities::GroupEntity
@@ -45,6 +49,7 @@ module API
         desc 'Update a group'
         params do
           requires :id, type: Integer
+          requires :access_token, type: String
           optional :name, type: String, desc: 'Name of Group'
         end
         put ':id' do
@@ -58,6 +63,7 @@ module API
         desc 'Delete a group'
         params do
           requires :id, type: Integer
+          requires :access_token, type: String
         end
         delete ':id' do
           @group.destroy
