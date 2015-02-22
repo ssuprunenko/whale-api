@@ -3,6 +3,7 @@ require 'grape-swagger'
 module API
   module V1
     class Base < Grape::API
+      mount API::V1::AuthController
       mount API::V1::MediaController
       mount API::V1::UsersController
       mount API::V1::GroupsController

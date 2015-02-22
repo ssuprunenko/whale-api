@@ -4,15 +4,23 @@ module API
       include API::V1::Defaults
 
       resource :users do
+        before do
+          authenticate!
+        end
+
         desc 'Return all users'
+        params do
+          requires :access_token, type: String
+        end
         get do
-          users = User.all
+          users = current_account.users
           present users, with: API::V1::Entities::UserEntity
         end
 
         desc 'Create the user'
         params do
           requires :uid, type: Integer, desc: 'Instagram ID of the user'
+          requires :access_token, type: String
           optional :name, type: String, desc: 'Full Name'
           optional :username, type: String, desc: 'Instagram username'
           optional :profile_picture, type: String, desc: 'Link to Profile Picture'
@@ -31,13 +39,14 @@ module API
         end
 
         before do
-          @user = User.find_by(uid: params[:uid])
+          @user = current_account.users.find_by(uid: params[:uid])
           raise(ActiveRecord::RecordNotFound) unless @user
         end
 
         desc 'Return the user'
         params do
           requires :uid, type: Integer, desc: 'Instagram ID of the user'
+          requires :access_token, type: String
         end
         get ':uid' do
           present @user, with: API::V1::Entities::UserEntity
@@ -46,6 +55,7 @@ module API
         desc 'Update the user'
         params do
           requires :uid, type: Integer, desc: 'Instagram ID of the user'
+          requires :access_token, type: String
           optional :name, type: String, desc: 'Full Name'
           optional :username, type: String, desc: 'Instagram username'
           optional :profile_picture, type: String, desc: 'Link to Profile Picture'
@@ -63,6 +73,7 @@ module API
         desc 'Delete the user'
         params do
           requires :uid, type: Integer, desc: 'Instagram ID of the user'
+          requires :access_token, type: String
         end
         delete ':uid' do
           @user.destroy

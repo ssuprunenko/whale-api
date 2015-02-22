@@ -12,7 +12,7 @@ module API
           optional :count, type: Integer, desc: 'Count', default: 10
           optional :distance, type: Integer, desc: 'Distance', default: 1000
         end
-        get '/recent' do
+        get :recent do
           lat, lng = params[:lat], params[:lng]
           media = Media.media_search(lat, lng, permitted_params.except(:lat, :lng))
 

@@ -4,9 +4,16 @@ module API
       include API::V1::Defaults
 
       resource :groups do
+        before do
+          authenticate!
+        end
+
         desc 'Return all groups'
+        params do
+          requires :access_token, type: String
+        end
         get do
-          groups = Group.all
+          groups = current_account.groups
           present groups, with: API::V1::Entities::GroupEntity
         end
 
@@ -15,7 +22,7 @@ module API
           requires :name, type: String, desc: 'Name of Group'
         end
         post do
-          @group = Group.new(permitted_params)
+          @group = current_account.groups.new(permitted_params)
           if @group.save
             present @group, with: API::V1::Entities::GroupEntity
           elsif @group.invalid?
@@ -26,13 +33,14 @@ module API
         end
 
         before do
-          @group = Group.find(params[:id])
+          @group = current_account.groups.find(params[:id])
           raise(ActiveRecord::RecordNotFound) unless @group
         end
 
         desc 'Return a group'
         params do
           requires :id, type: Integer
+          requires :access_token, type: String
         end
         get ':id' do
           present @group, with: API::V1::Entities::GroupEntity
@@ -41,6 +49,7 @@ module API
         desc 'Update a group'
         params do
           requires :id, type: Integer
+          requires :access_token, type: String
           optional :name, type: String, desc: 'Name of Group'
         end
         put ':id' do
@@ -54,6 +63,7 @@ module API
         desc 'Delete a group'
         params do
           requires :id, type: Integer
+          requires :access_token, type: String
         end
         delete ':id' do
           @group.destroy

@@ -12,7 +12,7 @@ gem 'grape-swagger-rails', github: 'BrandyMint/grape-swagger-rails'
 gem 'rack-cors', require: 'rack/cors'
 
 gem 'pg'
-gem 'enumerize'
+gem 'devise'
 
 gem 'instagram'
 
@@ -33,5 +33,6 @@ group :development do
   gem 'bullet'
 
   gem 'annotate'
+  gem 'faker'
 end
 

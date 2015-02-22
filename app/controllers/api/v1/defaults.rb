@@ -16,6 +16,23 @@ module API
           def logger
             Rails.logger
           end
+
+          def warden
+            env['warden']
+          end
+
+          def authenticate!
+            error!('401 Unauthorized', 401) unless authenticated
+          end
+
+          def authenticated
+            return true if warden.authenticated?
+            params[:access_token] && @account = Account.find_by_authentication_token(params[:access_token])
+          end
+
+          def current_account
+            @account
+          end
         end
 
         # global exception handler, used for error notifications
