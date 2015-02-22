@@ -13,6 +13,7 @@ gem 'rack-cors', require: 'rack/cors'
 
 gem 'pg'
 gem 'devise'
+gem 'faker'
 
 gem 'instagram'
 
@@ -33,7 +34,6 @@ group :development do
   gem 'bullet'
 
   gem 'annotate'
-  gem 'faker'
 end
 
 group :test do
