@@ -36,3 +36,10 @@ group :development do
   gem 'faker'
 end
 
+group :test do
+  gem 'airborne'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
+end
+
