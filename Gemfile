@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.0'
-gem 'rails-api'
 
 # JSON API
 gem 'grape'
@@ -13,6 +12,7 @@ gem 'rack-cors', require: 'rack/cors'
 
 gem 'pg'
 gem 'devise'
+gem 'faker'
 
 gem 'instagram'
 
@@ -33,6 +33,12 @@ group :development do
   gem 'bullet'
 
   gem 'annotate'
-  gem 'faker'
+end
+
+group :test do
+  gem 'airborne'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'rspec-rails'
 end
 
