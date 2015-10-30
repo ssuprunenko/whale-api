@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.4'
 gem 'rails-api'
 
 # JSON API
 gem 'grape'
 gem 'grape-entity'
 gem 'grape-swagger'
-gem 'grape-swagger-rails', github: 'BrandyMint/grape-swagger-rails'
+gem 'grape-swagger-rails'
 
 gem 'rack-cors', require: 'rack/cors'
 
@@ -35,4 +35,3 @@ group :development do
   gem 'annotate'
   gem 'faker'
 end
-
